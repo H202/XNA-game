@@ -27,6 +27,7 @@ namespace StarFrontier
         Texture2D Background_Menu;
         Texture2D beams;
         Texture2D SpriteSheet;
+        public Player Mainplayer = new Player();
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -49,6 +50,7 @@ namespace StarFrontier
             SpriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet");
             IsMouseVisible = true;
             base.Initialize();
+            
         }
 
         /// <summary>
@@ -88,6 +90,19 @@ namespace StarFrontier
             MousePos.Y = Mouse.GetState().Y -15;
             Distance.X = Player.PlayerPos.X - Mouse1.X;
             Distance.Y = Player.PlayerPos.Y - Mouse1.Y;
+            KeyboardState Keyboardinput = Keyboard.GetState();
+            if (Keyboardinput.IsKeyDown(Keys.W))
+            {
+                Player.direction = new Vector2((float)Math.Cos(Player.PlayerRotation ), (float)Math.Sin(Player.PlayerRotation));
+                Player.PlayerPos -= Player.direction * 1 * gameTime.ElapsedGameTime.Milliseconds;
+                Window.Title = Player.PlayerPos.ToString();
+            }
+            if (Keyboardinput.IsKeyDown(Keys.S))
+            {
+                Player.direction = new Vector2((float)Math.Cos(Player.PlayerRotation), (float)Math.Sin(Player.PlayerRotation));
+                Player.PlayerPos += Player.direction * 1 * gameTime.ElapsedGameTime.Milliseconds;
+                Window.Title = Player.PlayerPos.ToString();
+            }
             Player.RotatePlayer();
             base.Update(gameTime);
         }
@@ -110,7 +125,7 @@ namespace StarFrontier
                     break;
                    
             }
-            spriteBatch.Draw(SpriteSheet,Player.PlayerPos, new Rectangle(Player.CurrentFrame.X * Player.FrameSize.X, Player.CurrentFrame.Y * Player.FrameSize.Y, Player.FrameSize.X, Player.FrameSize.Y),Color.White,Player.PlayerRotation,new Vector2(23,15),1,SpriteEffects.None,0);
+            spriteBatch.Draw(SpriteSheet, Player.PlayerPos, new Rectangle(Player.CurrentFrame.X * Player.FrameSize.X, Player.CurrentFrame.Y * Player.FrameSize.Y, Player.FrameSize.X, Player.FrameSize.Y), Color.White, Player.PlayerRotation + (float)1.57, new Vector2(23, 15), 1, SpriteEffects.None, 0);
             spriteBatch.Draw(GreenMousePointer, MousePos, Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
