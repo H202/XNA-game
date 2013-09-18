@@ -22,7 +22,7 @@ namespace StarFrontier
         gameState CurrentGamestate = gameState.Menu;
         Vector2 MousePos; //tracks the mouse position on screen in order to display the pointer (r.g greenmousepointer)
         public static Vector2 Distance; // distance between mouse and sprite , used for rotation
-
+        public static int count = 0;
         Texture2D GreenMousePointer;
         Texture2D Background_Menu;
         Texture2D beams;
@@ -93,9 +93,10 @@ namespace StarFrontier
             KeyboardState Keyboardinput = Keyboard.GetState();
             if (Keyboardinput.IsKeyDown(Keys.W))
             {
-                Player.direction = new Vector2((float)Math.Cos(Player.PlayerRotation ), (float)Math.Sin(Player.PlayerRotation));
-                Player.PlayerPos -= Player.direction * 1 * gameTime.ElapsedGameTime.Milliseconds;
-                Window.Title = Player.PlayerPos.ToString();
+                    Player.direction = new Vector2((float)Math.Cos(Player.PlayerRotation), (float)Math.Sin(Player.PlayerRotation));
+                    Player.PlayerPos -= Player.direction * 1 * (gameTime.ElapsedGameTime.Milliseconds/4);
+                    Window.Title = Player.PlayerPos.ToString();
+
             }
             if (Keyboardinput.IsKeyDown(Keys.S))
             {
