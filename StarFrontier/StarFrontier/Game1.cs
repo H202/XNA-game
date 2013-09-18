@@ -21,10 +21,12 @@ namespace StarFrontier
         enum gameState { Menu, InGame, GameOver };
         gameState CurrentGamestate = gameState.Menu;
         Vector2 MousePos; //tracks the mouse position on screen in order to display the pointer (r.g greenmousepointer)
+        public static Vector2 Distance; // distance between mouse and sprite , used for rotation
 
         Texture2D GreenMousePointer;
         Texture2D Background_Menu;
         Texture2D beams;
+        Texture2D SpriteSheet;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -44,6 +46,7 @@ namespace StarFrontier
             GreenMousePointer = Content.Load<Texture2D>(@"Textures\GreenMousePointer");
             Background_Menu = Content.Load<Texture2D>(@"Textures\Background_Menu");
             beams = Content.Load<Texture2D>(@"Textures\beams");
+            SpriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet");
             IsMouseVisible = true;
             base.Initialize();
         }
@@ -79,10 +82,13 @@ namespace StarFrontier
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
-
+            MouseState Mouse1 = Mouse.GetState();
             // TODO: Add your update logic here
-            MousePos.X = Mouse.GetState().X -15;
+            MousePos.X = Mouse.GetState().X -15; //used for Mousepointer graphic
             MousePos.Y = Mouse.GetState().Y -15;
+            Distance.X = Player.PlayerPos.X - Mouse1.X;
+            Distance.Y = Player.PlayerPos.Y - Mouse1.Y;
+            Player.RotatePlayer();
             base.Update(gameTime);
         }
 
@@ -97,13 +103,14 @@ namespace StarFrontier
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             
-            switch (CurrentGamestate)
+            switch (CurrentGamestate)//sets the background for current scene, e.g space || planet || blackhole
             {
                 case gameState.Menu :
                     spriteBatch.Draw(Background_Menu, new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height), Color.White);
                     break;
                    
             }
+            spriteBatch.Draw(SpriteSheet,Player.PlayerPos, new Rectangle(Player.CurrentFrame.X * Player.FrameSize.X, Player.CurrentFrame.Y * Player.FrameSize.Y, Player.FrameSize.X, Player.FrameSize.Y),Color.White,Player.PlayerRotation,new Vector2(23,15),1,SpriteEffects.None,0);
             spriteBatch.Draw(GreenMousePointer, MousePos, Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
