@@ -48,7 +48,7 @@ namespace StarFrontier
             Background_Menu = Content.Load<Texture2D>(@"Textures\Background_Menu");
             beams = Content.Load<Texture2D>(@"Textures\beams");
             SpriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet");
-            IsMouseVisible = true;
+            IsMouseVisible = false;
             base.Initialize();
             
         }
