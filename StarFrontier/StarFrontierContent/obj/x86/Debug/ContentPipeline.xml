@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Textures\GreenMousePointer.png</Source>
+      <Name>Textures\GreenMousePointer</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\bin\x86\Debug\Content\Textures\GreenMousePointer.xnb</Output>
+      <Time>2013-09-18T14:21:16.15989+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\beams.png</Source>
+      <Name>Textures\beams</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\bin\x86\Debug\Content\Textures\beams.xnb</Output>
+      <Time>2013-09-18T14:21:33.0408555+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\SpriteSheet.png</Source>
+      <Name>Textures\SpriteSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\bin\x86\Debug\Content\Textures\SpriteSheet.xnb</Output>
+      <Time>2013-09-18T14:21:37.1630913+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Background_Menu.jpg</Source>
+      <Name>Textures\Background_Menu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\bin\x86\Debug\Content\Textures\Background_Menu.xnb</Output>
+      <Time>2013-09-18T14:24:46.2309054+01:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontierContent\</RootDirectory>
+      <LoggerRootDirectory>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\</LoggerRootDirectory>
+      <IntermediateDirectory>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontierContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+01:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+01:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+01:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+01:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+01:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+01:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2013-09-10T12:19:28.0104472+01:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
