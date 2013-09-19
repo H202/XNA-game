@@ -91,20 +91,8 @@ namespace StarFrontier
             Distance.X = Player.PlayerPos.X - Mouse1.X;
             Distance.Y = Player.PlayerPos.Y - Mouse1.Y;
             KeyboardState Keyboardinput = Keyboard.GetState();
-            if (Keyboardinput.IsKeyDown(Keys.W))
-            {
-                    Player.direction = new Vector2((float)Math.Cos(Player.PlayerRotation), (float)Math.Sin(Player.PlayerRotation));
-                    Player.PlayerPos -= Player.direction * 1 * (gameTime.ElapsedGameTime.Milliseconds/4);
-                    Window.Title = Player.PlayerPos.ToString();
-
-            }
-            if (Keyboardinput.IsKeyDown(Keys.S))
-            {
-                Player.direction = new Vector2((float)Math.Cos(Player.PlayerRotation), (float)Math.Sin(Player.PlayerRotation));
-                Player.PlayerPos += Player.direction * 1 * gameTime.ElapsedGameTime.Milliseconds;
-                Window.Title = Player.PlayerPos.ToString();
-            }
-            Player.RotatePlayer();
+            Player.PlayerPositionUpdate(Keyboardinput,gameTime);//updates the players position
+            Player.RotatePlayer();//updates the players rotation
             base.Update(gameTime);
         }
 

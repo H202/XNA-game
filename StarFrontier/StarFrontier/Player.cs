@@ -26,9 +26,50 @@ namespace StarFrontier
         {
             PlayerRotation = (float)Math.Atan2(Game1.Distance.Y,Game1.Distance.X);
         }
-        public static void PlayerPositionUpdate()
+        public static Vector2 PlayerPositionUpdate(KeyboardState Keyboardinput ,GameTime gameTime )
         {
-            
+            if (Keyboardinput.IsKeyDown(Keys.W))
+            {
+                direction = new Vector2((float)Math.Cos(PlayerRotation), (float)Math.Sin(Player.PlayerRotation));
+                PlayerPos -= direction * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6);
+                if ((CurrentFrame.X <= 4) && (CurrentFrame.Y == 0))
+                    CurrentFrame.X = CurrentFrame.X + 1;
+                if (CurrentFrame.X >= 4 && CurrentFrame.Y == 0)
+                {
+                    CurrentFrame.X = 0;
+                    CurrentFrame.Y = 1;
+                }
+                if ((CurrentFrame.X <= 4) && (CurrentFrame.Y == 1))
+                {
+                    CurrentFrame.X = CurrentFrame.X + 1;
+                }
+                if ((CurrentFrame.X >= 4) && (CurrentFrame.Y == 1))
+                {
+                    CurrentFrame.X = 0;
+                    CurrentFrame.Y = 0;
+                }
+            }
+            if (Keyboardinput.IsKeyUp(Keys.W))
+            {
+                CurrentFrame.X = 0;
+                CurrentFrame.Y = 0;
+            }
+            if (Keyboardinput.IsKeyDown(Keys.S))
+            {
+                direction = new Vector2((float)Math.Cos(PlayerRotation), (float)Math.Sin(Player.PlayerRotation));
+                PlayerPos += direction * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6 );
+            }
+            if (Keyboardinput.IsKeyDown(Keys.D))//player supposed to move right from mouse direction. NOT WORKING YET
+            {
+                direction = new Vector2((float)Math.Cos(PlayerRotation + 1.57f), (float)Math.Sin(Player.PlayerRotation));
+                PlayerPos += direction * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6);
+            }
+            if (Keyboardinput.IsKeyDown(Keys.A))//player supposed to move left from mouse direction. NOT WORKING YET
+            {
+                direction = new Vector2((float)Math.Cos(PlayerRotation + 1.57f), (float)Math.Sin(Player.PlayerRotation));
+                PlayerPos += direction * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6);
+            }
+            return PlayerPos;
         }
     }
 }
