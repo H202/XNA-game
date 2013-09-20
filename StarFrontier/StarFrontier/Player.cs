@@ -17,11 +17,11 @@ namespace StarFrontier
         public static Vector2 PlayerPos = new Vector2(250,250);
         public static float PlayerRotation = 0; 
         //for Walking animation
-        public static Point FrameSize = new Point(45,45);
+        public static Point FrameSize = new Point(48,48);
         public static Point CurrentFrame = new Point(0, 0);
         public static Point SpriteSheetSize = new Point(4, 2);
         public static Vector2 direction;
-
+        public static int TimeElapsed = 0; // is used to regulate the speed of the walking animation
         public static void RotatePlayer()
         {
             PlayerRotation = (float)Math.Atan2(Game1.Distance.Y,Game1.Distance.X);
@@ -32,21 +32,26 @@ namespace StarFrontier
             {
                 direction = new Vector2((float)Math.Cos(PlayerRotation), (float)Math.Sin(Player.PlayerRotation));
                 PlayerPos -= direction * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6);
-                if ((CurrentFrame.X <= 4) && (CurrentFrame.Y == 0))
-                    CurrentFrame.X = CurrentFrame.X + 1;
-                if (CurrentFrame.X >= 4 && CurrentFrame.Y == 0)
+                TimeElapsed += gameTime.ElapsedGameTime.Milliseconds;
+                if (TimeElapsed > 100)
                 {
-                    CurrentFrame.X = 0;
-                    CurrentFrame.Y = 1;
-                }
-                if ((CurrentFrame.X <= 4) && (CurrentFrame.Y == 1))
-                {
-                    CurrentFrame.X = CurrentFrame.X + 1;
-                }
-                if ((CurrentFrame.X >= 4) && (CurrentFrame.Y == 1))
-                {
-                    CurrentFrame.X = 0;
-                    CurrentFrame.Y = 0;
+                    if ((CurrentFrame.X <= 4) && (CurrentFrame.Y == 0))
+                        CurrentFrame.X = CurrentFrame.X + 1;
+                    if (CurrentFrame.X >= 4 && CurrentFrame.Y == 0)
+                    {
+                        CurrentFrame.X = 0;
+                        CurrentFrame.Y = 1;
+                    }
+                    if ((CurrentFrame.X <= 4) && (CurrentFrame.Y == 1))
+                    {
+                        CurrentFrame.X = CurrentFrame.X + 1;
+                    }
+                    if ((CurrentFrame.X >= 4) && (CurrentFrame.Y == 1))
+                    {
+                        CurrentFrame.X = 0;
+                        CurrentFrame.Y = 0;
+                    }
+                    TimeElapsed = 0;
                 }
             }
             if (Keyboardinput.IsKeyUp(Keys.W))
