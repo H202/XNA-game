@@ -30,28 +30,36 @@ namespace StarFrontier
         {
             if (Keyboardinput.IsKeyDown(Keys.W))
             {
-                direction = new Vector2((float)Math.Cos(PlayerRotation), (float)Math.Sin(Player.PlayerRotation));
-                PlayerPos -= direction * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6);
-                TimeElapsed += gameTime.ElapsedGameTime.Milliseconds;
-                if (TimeElapsed > 100)
+                if ((Mouse.GetState().X >= PlayerPos.X + 1 || Mouse.GetState().X <= PlayerPos.X - 1) && (Mouse.GetState().Y >= PlayerPos.Y + 1 || Mouse.GetState().Y <= PlayerPos.Y - 1))
                 {
-                    if ((CurrentFrame.X <= 4) && (CurrentFrame.Y == 0))
-                        CurrentFrame.X = CurrentFrame.X + 1;
-                    if (CurrentFrame.X >= 4 && CurrentFrame.Y == 0)
+                    direction = new Vector2((float)Math.Cos(PlayerRotation), (float)Math.Sin(Player.PlayerRotation));
+                    PlayerPos -= direction * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6);
+                    TimeElapsed += gameTime.ElapsedGameTime.Milliseconds;
+                    if (TimeElapsed > 100)
                     {
-                        CurrentFrame.X = 0;
-                        CurrentFrame.Y = 1;
+                        if ((CurrentFrame.X <= 4) && (CurrentFrame.Y == 0))
+                            CurrentFrame.X = CurrentFrame.X + 1;
+                        if (CurrentFrame.X >= 4 && CurrentFrame.Y == 0)
+                        {
+                            CurrentFrame.X = 0;
+                            CurrentFrame.Y = 1;
+                        }
+                        if ((CurrentFrame.X <= 4) && (CurrentFrame.Y == 1))
+                        {
+                            CurrentFrame.X = CurrentFrame.X + 1;
+                        }
+                        if ((CurrentFrame.X >= 4) && (CurrentFrame.Y == 1))
+                        {
+                            CurrentFrame.X = 0;
+                            CurrentFrame.Y = 0;
+                        }
+                        TimeElapsed = 0;
                     }
-                    if ((CurrentFrame.X <= 4) && (CurrentFrame.Y == 1))
-                    {
-                        CurrentFrame.X = CurrentFrame.X + 1;
-                    }
-                    if ((CurrentFrame.X >= 4) && (CurrentFrame.Y == 1))
-                    {
-                        CurrentFrame.X = 0;
-                        CurrentFrame.Y = 0;
-                    }
-                    TimeElapsed = 0;
+                }
+                else
+                {
+                    CurrentFrame.X = 0;
+                    CurrentFrame.Y = 0;
                 }
             }
             if (Keyboardinput.IsKeyUp(Keys.W))
