@@ -88,11 +88,11 @@ namespace StarFrontier
             // TODO: Add your update logic here
             MousePos.X = Mouse.GetState().X -15; //used for Mousepointer graphic
             MousePos.Y = Mouse.GetState().Y -15;
-            Distance.X = Player.PlayerPos.X - Mouse1.X;
-            Distance.Y = Player.PlayerPos.Y - Mouse1.Y;
+            Distance.X = Mainplayer.PlayerPos.X - Mouse1.X;
+            Distance.Y = Mainplayer.PlayerPos.Y - Mouse1.Y;
             KeyboardState Keyboardinput = Keyboard.GetState();
-            Player.PlayerPositionUpdate(Keyboardinput,gameTime);//updates the players position
-            Player.RotatePlayer();//updates the players rotation
+            Mainplayer.PlayerPositionUpdate(Keyboardinput, gameTime);//updates the players position
+            Mainplayer.RotatePlayer();//updates the players rotation
             base.Update(gameTime);
         }
 
@@ -114,7 +114,7 @@ namespace StarFrontier
                     break;
                    
             }
-            spriteBatch.Draw(SpriteSheet, Player.PlayerPos, new Rectangle(Player.CurrentFrame.X * Player.FrameSize.X, Player.CurrentFrame.Y * Player.FrameSize.Y, Player.FrameSize.X, Player.FrameSize.Y), Color.White, Player.PlayerRotation + (float)1.57, new Vector2(23, 15), 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(SpriteSheet, Mainplayer.PlayerPos, new Rectangle(Mainplayer.CurrentFrame.X * Mainplayer.FrameSize.X, Mainplayer.CurrentFrame.Y * Mainplayer.FrameSize.Y, Mainplayer.FrameSize.X, Mainplayer.FrameSize.Y), Color.White, Mainplayer.PlayerRotation + (float)1.57, new Vector2(23, 15), 1, SpriteEffects.None, 0);
             spriteBatch.Draw(GreenMousePointer, MousePos, Color.White);
             spriteBatch.End();
             base.Draw(gameTime);

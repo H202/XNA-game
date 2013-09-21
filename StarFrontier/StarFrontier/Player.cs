@@ -14,30 +14,30 @@ namespace StarFrontier
     public class Player
     {
         Texture2D PlayerCurrentSprite;
-        public static Vector2 PlayerPos { get; set; }
-        public static float PlayerRotation = 0; 
+        public  Vector2 PlayerPos { get; set; }
+        public  float PlayerRotation = 0; 
         //for Walking animation
-        public static Point FrameSize = new Point(48,48);
-        public static Point CurrentFrame = new Point(0, 0);
-        public static Point SpriteSheetSize = new Point(4, 2);
-        public static Vector2 direction;
-        public static int TimeElapsed2 = 0;// is used to regulate the speed of the backward walking animation
-        public static int TimeElapsed = 0;// is used to regulate the speed of the forward walking animation
-        public static Vector2 SideStrafe; // initial player position saved here when player starts side strafing.
-        public static Vector2 CurrentMousePosition;
-        public static bool IsSideStrafing = false;
-        public static void RotatePlayer()
+        public  Point FrameSize = new Point(48,48);
+        public  Point CurrentFrame = new Point(0, 0);
+        public  Point SpriteSheetSize = new Point(4, 2);
+        public  Vector2 direction;
+        public  int TimeElapsed2 = 0;// is used to regulate the speed of the backward walking animation
+        public  int TimeElapsed = 0;// is used to regulate the speed of the forward walking animation
+        public  Vector2 SideStrafe; // initial player position saved here when player starts side strafing.
+        public  Vector2 CurrentMousePosition;
+        public  bool IsSideStrafing = false;
+        public  void RotatePlayer()
         {
             PlayerRotation = (float)Math.Atan2(Game1.Distance.Y,Game1.Distance.X);
         }
-        public static Vector2 PlayerPositionUpdate(KeyboardState Keyboardinput ,GameTime gameTime )
+        public  Vector2 PlayerPositionUpdate(KeyboardState Keyboardinput ,GameTime gameTime )
         {
             if (Keyboardinput.IsKeyDown(Keys.W))
             {
                
                 if ((Mouse.GetState().X >= PlayerPos.X + 1 || Mouse.GetState().X <= PlayerPos.X - 1) && (Mouse.GetState().Y >= PlayerPos.Y + 1 || Mouse.GetState().Y <= PlayerPos.Y - 1)) // prevents walking bug "spiral of death"
                 {
-                    direction = new Vector2((float)Math.Cos(PlayerRotation), (float)Math.Sin(Player.PlayerRotation));
+                    direction = new Vector2((float)Math.Cos(PlayerRotation), (float)Math.Sin(this.PlayerRotation));
                     PlayerPos -= direction * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6);
                     TimeElapsed += gameTime.ElapsedGameTime.Milliseconds;
                     if (TimeElapsed > 100)// controls walking animation speed
@@ -75,7 +75,7 @@ namespace StarFrontier
             if (Keyboardinput.IsKeyDown(Keys.S))
             {
                 
-                direction = new Vector2((float)Math.Cos(PlayerRotation), (float)Math.Sin(Player.PlayerRotation));
+                direction = new Vector2((float)Math.Cos(PlayerRotation), (float)Math.Sin(this.PlayerRotation));
                     PlayerPos += direction * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6);
                     TimeElapsed2 += gameTime.ElapsedGameTime.Milliseconds;
                     if (TimeElapsed2 > 100)// controls walking animation speed
@@ -104,7 +104,7 @@ namespace StarFrontier
                 if (!IsSideStrafing)
                 {
  
-                    SideStrafe = new Vector2((float)Math.Cos(PlayerRotation + 1.5707f), (float)Math.Sin(Player.PlayerRotation + 1.5707f));
+                    SideStrafe = new Vector2((float)Math.Cos(PlayerRotation + 1.5707f), (float)Math.Sin(this.PlayerRotation + 1.5707f));
                     IsSideStrafing = true;
                 }
                 PlayerPos -= SideStrafe * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6);
@@ -122,7 +122,7 @@ namespace StarFrontier
             {
                 if (!IsSideStrafing || (CurrentMousePosition.X != Mouse.GetState().X && CurrentMousePosition.Y != Mouse.GetState().Y))
                 {
-                    SideStrafe = new Vector2((float)Math.Cos(PlayerRotation + 1.5707f), (float)Math.Sin(Player.PlayerRotation + 1.5707f));
+                    SideStrafe = new Vector2((float)Math.Cos(PlayerRotation + 1.5707f), (float)Math.Sin(this.PlayerRotation + 1.5707f));
                     IsSideStrafing = true;
                 }
                 PlayerPos += SideStrafe * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6);
