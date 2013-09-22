@@ -11,15 +11,6 @@
       <Time>2013-09-18T14:21:16.15989+01:00</Time>
     </Item>
     <Item>
-      <Source>Textures\beams.png</Source>
-      <Name>Textures\beams</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\bin\x86\Debug\Content\Textures\beams.xnb</Output>
-      <Time>2013-09-18T14:21:33.0408555+01:00</Time>
-    </Item>
-    <Item>
       <Source>Textures\SpriteSheet.png</Source>
       <Name>Textures\SpriteSheet</Name>
       <Importer>TextureImporter</Importer>
@@ -37,16 +28,25 @@
       <Output>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\bin\x86\Debug\Content\Textures\Background_Menu.xnb</Output>
       <Time>2013-09-18T14:24:46.2309054+01:00</Time>
     </Item>
+    <Item>
+      <Source>Textures\Weapons\LaserBlue.png</Source>
+      <Name>Textures\Weapons\LaserBlue</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\bin\x86\Debug\Content\Textures\Weapons\LaserBlue.xnb</Output>
+      <Time>2013-09-21T16:50:49.9665855+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontierContent\</RootDirectory>
-      <LoggerRootDirectory>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\</LoggerRootDirectory>
-      <IntermediateDirectory>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontierContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>c:\users\jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontierContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontierContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Jonathan\documents\visual studio 2010\Projects\StarFrontier\StarFrontier\StarFrontier\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

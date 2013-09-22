@@ -11,24 +11,26 @@ using Microsoft.Xna.Framework.Media;
 
 namespace StarFrontier
 {
-    public class Player
+    class Player
     {
         Texture2D PlayerCurrentSprite;
-        public  Vector2 PlayerPos { get; set; }
-        public  float PlayerRotation = 0; 
+        public Vector2 PlayerPos = new Vector2(200,200);
+        public float PlayerRotation = 0; 
         //for Walking animation
         public  Point FrameSize = new Point(48,48);
         public  Point CurrentFrame = new Point(0, 0);
         public  Point SpriteSheetSize = new Point(4, 2);
         public  Vector2 direction;
+        public BlueLaser Projectile;
         public  int TimeElapsed2 = 0;// is used to regulate the speed of the backward walking animation
         public  int TimeElapsed = 0;// is used to regulate the speed of the forward walking animation
         public  Vector2 SideStrafe; // initial player position saved here when player starts side strafing.
-        public  Vector2 CurrentMousePosition;
         public  bool IsSideStrafing = false;
+        public float currentRotation;
+        public enum CurrentWeapon {RedLaser,BlueLaser };
         public  void RotatePlayer()
         {
-            PlayerRotation = (float)Math.Atan2(Game1.Distance.Y,Game1.Distance.X);
+            PlayerRotation = (float)Math.Atan2(Game1.Distance.Y, Game1.Distance.X) ;
         }
         public  Vector2 PlayerPositionUpdate(KeyboardState Keyboardinput ,GameTime gameTime )
         {
@@ -104,30 +106,47 @@ namespace StarFrontier
                 if (!IsSideStrafing)
                 {
  
-                    SideStrafe = new Vector2((float)Math.Cos(PlayerRotation + 1.5707f), (float)Math.Sin(this.PlayerRotation + 1.5707f));
+                    SideStrafe = new Vector2((float)Math.Cos(PlayerRotation ), (float)Math.Sin(this.PlayerRotation + 1.5707f));
                     IsSideStrafing = true;
                 }
                 PlayerPos -= SideStrafe * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6);
             }
             if (Keyboardinput.IsKeyUp(Keys.D) && Keyboardinput.IsKeyUp(Keys.A))//player supposed to move right from mouse direction. NOT WORKING YET
             {
-                if ((CurrentMousePosition.X != Mouse.GetState().X && CurrentMousePosition.Y != Mouse.GetState().Y))
-                {
-                    CurrentMousePosition.X = Mouse.GetState().X;
-                    CurrentMousePosition.Y = Mouse.GetState().Y;
-                    IsSideStrafing = false;
-                }
+                IsSideStrafing = false;
             }
             if (Keyboardinput.IsKeyDown(Keys.A))//player supposed to move left from mouse direction. NOT WORKING YET
             {
-                if (!IsSideStrafing || (CurrentMousePosition.X != Mouse.GetState().X && CurrentMousePosition.Y != Mouse.GetState().Y))
+                if (!IsSideStrafing)
                 {
-                    SideStrafe = new Vector2((float)Math.Cos(PlayerRotation + 1.5707f), (float)Math.Sin(this.PlayerRotation + 1.5707f));
+                    currentRotation = PlayerRotation;
                     IsSideStrafing = true;
                 }
-                PlayerPos += SideStrafe * 1 * (gameTime.ElapsedGameTime.Milliseconds / 6);
+                if (currentRotation >= 0.75f && PlayerRotation <= 2.25f)
+                {
+                    this.PlayerPos.X -= 1;
+                }
+                if (currentRotation >= 2.25f || PlayerRotation <= -2.25f)
+                {
+                    this.PlayerPos.Y -= 1;
+                }
+                if (currentRotation >= -2.25f && PlayerRotation <= -0.75f)
+                {
+                    this.PlayerPos.X += 1;
+                }
+                if (currentRotation >= 0.75f && PlayerRotation <= 5.4978f)
+                {
+                    this.PlayerPos.Y += 1;
+                }
             }
             return PlayerPos;
+        }
+        public void shotFired(MouseState Mouse)
+        {
+            if (Mouse.LeftButton == ButtonState.Pressed)
+            {
+                Projectile = new BlueLaser(this, PlayerRotation);
+            }
         }
     }
 }

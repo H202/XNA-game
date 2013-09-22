@@ -21,11 +21,12 @@ namespace StarFrontier
         enum gameState { Menu, InGame, GameOver };
         gameState CurrentGamestate = gameState.Menu;
         Vector2 MousePos; //tracks the mouse position on screen in order to display the pointer (r.g greenmousepointer)
+        MouseState MouseState = Mouse.GetState();
         public static Vector2 Distance; // distance between mouse and sprite , used for rotation
         public static int count = 0;
         Texture2D GreenMousePointer;
         Texture2D Background_Menu;
-        Texture2D beams;
+        Texture2D LaserBlue;
         Texture2D SpriteSheet;
         public Player Mainplayer = new Player();
         public Game1()
@@ -46,7 +47,7 @@ namespace StarFrontier
             // TODO: Add your initialization logic here
             GreenMousePointer = Content.Load<Texture2D>(@"Textures\GreenMousePointer");
             Background_Menu = Content.Load<Texture2D>(@"Textures\Background_Menu");
-            beams = Content.Load<Texture2D>(@"Textures\beams");
+            LaserBlue = Content.Load<Texture2D>(@"Textures\Weapons\LaserBlue");
             SpriteSheet = Content.Load<Texture2D>(@"Textures\SpriteSheet");
             IsMouseVisible = false;
             base.Initialize();
@@ -93,6 +94,8 @@ namespace StarFrontier
             KeyboardState Keyboardinput = Keyboard.GetState();
             Mainplayer.PlayerPositionUpdate(Keyboardinput, gameTime);//updates the players position
             Mainplayer.RotatePlayer();//updates the players rotation
+            Mainplayer.shotFired(MouseState);
+            Window.Title = Mainplayer.PlayerRotation.ToString();
             base.Update(gameTime);
         }
 
@@ -114,8 +117,9 @@ namespace StarFrontier
                     break;
                    
             }
-            spriteBatch.Draw(SpriteSheet, Mainplayer.PlayerPos, new Rectangle(Mainplayer.CurrentFrame.X * Mainplayer.FrameSize.X, Mainplayer.CurrentFrame.Y * Mainplayer.FrameSize.Y, Mainplayer.FrameSize.X, Mainplayer.FrameSize.Y), Color.White, Mainplayer.PlayerRotation + (float)1.57, new Vector2(23, 15), 1, SpriteEffects.None, 0);
+            spriteBatch.Draw(SpriteSheet, Mainplayer.PlayerPos, new Rectangle(Mainplayer.CurrentFrame.X * Mainplayer.FrameSize.X, Mainplayer.CurrentFrame.Y * Mainplayer.FrameSize.Y, Mainplayer.FrameSize.X, Mainplayer.FrameSize.Y), Color.White, Mainplayer.PlayerRotation + (float)1.5707 , new Vector2(23, 15), 1, SpriteEffects.None, 0);
             spriteBatch.Draw(GreenMousePointer, MousePos, Color.White);
+            spriteBatch.Draw(LaserBlue, Mainplayer.Projectile.LaserPos, new Rectangle(0, 0, 45, 70), Color.White, Mainplayer.Projectile.PlayerRotation, Vector2.Zero, 1, SpriteEffects.None, 0);
             spriteBatch.End();
             base.Draw(gameTime);
         }
